@@ -86,9 +86,82 @@ fn star_2() -> u32 {
 }
 
 
+fn day_2_1() -> i32 {
+    let path = Path::new("inputs/02");
+    let display = path.display();
+
+    let mut file = match File::open(&path) {
+        Err(why) => panic!("couldn't open {}: {}", display, why),
+        Ok(file) => file,
+    };
+
+    let mut s = String::new();
+    match file.read_to_string(&mut s) {
+        Err(why) => panic!("couldn't read {}: {}", display, why),
+        Ok(_) => println!("Read file successfully"),
+    }
+
+    let mut total_score: i32 = 0;
+    for line in s.lines() {
+        match line.trim() {
+            "A X" => total_score += 4,
+            "A Y" => total_score += 8,
+            "A Z" => total_score += 3,
+            "B X" => total_score += 1,
+            "B Y" => total_score += 5,
+            "B Z" => total_score += 9,
+            "C X" => total_score += 7,
+            "C Y" => total_score += 2,
+            "C Z" => total_score += 6,
+            other => panic!("Unexpected value found: {other}"),
+        }
+    }
+    total_score
+}
+
+
+fn day_2_2() -> i32 {
+    let path = Path::new("inputs/02");
+    let display = path.display();
+
+    let mut file = match File::open(&path) {
+        Err(why) => panic!("couldn't open {}: {}", display, why),
+        Ok(file) => file,
+    };
+
+    let mut s = String::new();
+    match file.read_to_string(&mut s) {
+        Err(why) => panic!("couldn't read {}: {}", display, why),
+        Ok(_) => println!("Read file successfully"),
+    }
+
+    let mut total_score: i32 = 0;
+    for line in s.lines() {
+        match line.trim() {
+            "A X" => total_score += 3,
+            "A Y" => total_score += 4,
+            "A Z" => total_score += 8,
+            "B X" => total_score += 1,
+            "B Y" => total_score += 5,
+            "B Z" => total_score += 9,
+            "C X" => total_score += 2,
+            "C Y" => total_score += 6,
+            "C Z" => total_score += 7,
+            other => panic!("Unexpected value found: {other}"),
+        }
+    }
+    total_score
+}
+
+
 fn main() {
-    let value = star_1();
-    println!("Largest Number of calories: {value}");
-    let value = star_2();
-    println!("Largest Number of calories: {value}");
+    // let value = star_1();
+    // println!("Largest Number of calories: {value}");
+    // let value = star_2();
+    // println!("Largest Number of calories: {value}");
+
+    let value = day_2_1();
+    println!("RPS game score: {value}");
+    let value = day_2_2();
+    println!("RPS game score: {value}");
 }
